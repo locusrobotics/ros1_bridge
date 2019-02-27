@@ -14,7 +14,7 @@ tailorTestPipeline(
   // Branch of tailor_meta to build against
   tailor_meta_branch: '0.1.7',
   // Master or release branch associated with this track
-  source_branch: 'locus-master',
+  source_branch: 'yammer-wip',
   // Docker registry where test image is stored
   docker_registry: 'https://084758475884.dkr.ecr.us-east-1.amazonaws.com/locus-tailor'
 )
