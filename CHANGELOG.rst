@@ -2,8 +2,8 @@
 Changelog for package ros1_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.0 (2019-03-18)
+------------------
 * Tailor: Updating Jenkinsfile
 * Misc Improvements (`#1 <https://github.com/locusrobotics/ros1_bridge/issues/1>`_)
   * Add wait to ROS1 server and improve logging
