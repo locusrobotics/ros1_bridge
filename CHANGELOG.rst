@@ -2,6 +2,14 @@
 Changelog for package ros1_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Contributors: locus-services
+
 0.8.0 (2019-07-12)
 ------------------
 * Tailor: Updating Jenkinsfile
