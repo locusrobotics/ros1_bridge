@@ -184,6 +184,8 @@ add_custom_command(
   COMMAND Python3::Interpreter
   ARGS bin/ros1_bridge_generate_factories
     --output-path "${generated_path}" --template-dir resource
+    --pkg-includes '${BRIDGE_INCLUDE_PKGS}'
+    --pkg-ignores '${BRIDGE_IGNORE_PKGS}'
   DEPENDS ${target_dependencies}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   COMMENT "Generating factories for interface types")
