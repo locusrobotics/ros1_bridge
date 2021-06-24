@@ -334,11 +334,13 @@ void ServiceFactory<
   auto & @(field["ros2"]["name"])2 = req2.@(field["ros2"]["name"]);
 @[          end if]@
 @[        end if]@
-@[        if field["basic"] and not field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]@
+@[        if not field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]@
+@[          if field["basic"]]@
   @(field["ros2"]["name"])@(to) = @(field["ros1"]["name"])@(frm);
-@[        elif not field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]@
+@[          else]@
   Factory<@(field["ros1"]["cpptype"]),@(field["ros2"]["cpptype"])>::convert_@(frm)_to_@(to)(@
 @(field["ros2"]["name"])@(frm), @(field["ros1"]["name"])@(to));
+@[          end if]@
 @[        end if]@
 @[        if field["array"]]@
   }
