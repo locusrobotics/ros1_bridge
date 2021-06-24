@@ -310,11 +310,21 @@ void ServiceFactory<
     @(field["ros1"]["name"])1_it != req1.@(field["ros1"]["name"]).end() &&
     @(field["ros2"]["name"])2_it != req2.@(field["ros2"]["name"]).end()
   ) {
+@[          if field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]
+    // convert builtin field
+    ros1_bridge::convert_1_to_2(*(@(field["ros1"]["name"])1_it++), *(@(field["ros2"]["name"])2_it++));
+@[          else]@
     auto & @(field["ros1"]["name"])1 = *(@(field["ros1"]["name"])1_it++);
     auto & @(field["ros2"]["name"])2 = *(@(field["ros2"]["name"])2_it++);
-@[      else]@
+@[          end if]@
+@[        else]@
+@[          if field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]
+  // convert builtin field
+  ros1_bridge::convert_1_to_2(@(field["ros1"]["name"]), @(field["ros2"]["name"]));
+@[          else]@
   auto & @(field["ros1"]["name"])1 = req1.@(field["ros1"]["name"]);
   auto & @(field["ros2"]["name"])2 = req2.@(field["ros2"]["name"]);
+@[          end if]@
 @[        end if]@
 @[        if field["basic"]]@
   @(field["ros2"]["name"])@(to) = @(field["ros1"]["name"])@(frm);
