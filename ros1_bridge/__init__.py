@@ -610,10 +610,11 @@ def determine_common_services(
                 if ros1_type != ros2_type or ros1_name != ros2_name:
                     # If the message types have a custom mapping their names
                     # might not be equal, therefore check the message pairs.
-                    # Make a special exception for ros1 time primitive
+                    # Make a special exception for ros1 time and duration primitives
                     # which is handled in the interface_factories template.
                     if (ros1_type, ros2_type) not in message_string_pairs:
-                        if ros1_type == "time" and ros2_type == "builtin_interfaces/Time":
+                        if (ros1_type == "time" and ros2_type == "builtin_interfaces/Time"
+                            or ros1_type == "duration" and ros2_type == "builtin_interfaces/Duration"):
                             pass
                         else:
                             match = False
