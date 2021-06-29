@@ -310,17 +310,37 @@ void ServiceFactory<
     @(field["ros1"]["name"])1_it != req1.@(field["ros1"]["name"]).end() &&
     @(field["ros2"]["name"])2_it != req2.@(field["ros2"]["name"]).end()
   ) {
+@[          if field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]
+    // convert builtin field
+@[            if frm == "1"]@
+    ros1_bridge::convert_1_to_2(*(@(field["ros1"]["name"])1_it++), *(@(field["ros2"]["name"])2_it++));
+@[            else]@
+    ros1_bridge::convert_2_to_1(*(@(field["ros2"]["name"])2_it++), *(@(field["ros1"]["name"])1_it++));
+@[            end if]@
+@[          else]@
     auto & @(field["ros1"]["name"])1 = *(@(field["ros1"]["name"])1_it++);
     auto & @(field["ros2"]["name"])2 = *(@(field["ros2"]["name"])2_it++);
-@[      else]@
+@[          end if]@
+@[        else]@
+@[          if field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]
+  // convert builtin field
+@[            if frm == "1"]@
+  ros1_bridge::convert_1_to_2(req1.@(field["ros1"]["name"]), req2.@(field["ros2"]["name"]));
+@[            else]@
+  ros1_bridge::convert_2_to_1(req2.@(field["ros2"]["name"]), req1.@(field["ros1"]["name"]));
+@[            end if]@
+@[          else]@
   auto & @(field["ros1"]["name"])1 = req1.@(field["ros1"]["name"]);
   auto & @(field["ros2"]["name"])2 = req2.@(field["ros2"]["name"]);
+@[          end if]@
 @[        end if]@
-@[        if field["basic"]]@
+@[        if not field["ros2"]["type"].split("/")[0] == "builtin_interfaces"]@
+@[          if field["basic"]]@
   @(field["ros2"]["name"])@(to) = @(field["ros1"]["name"])@(frm);
-@[        else]@
+@[          else]@
   Factory<@(field["ros1"]["cpptype"]),@(field["ros2"]["cpptype"])>::convert_@(frm)_to_@(to)(@
 @(field["ros2"]["name"])@(frm), @(field["ros1"]["name"])@(to));
+@[          end if]@
 @[        end if]@
 @[        if field["array"]]@
   }
