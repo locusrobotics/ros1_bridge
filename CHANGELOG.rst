@@ -2,6 +2,48 @@
 Changelog for package ros1_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Tailor: Updating Jenkinsfile
+* Fix logging for updated rclcpp interface (#303)
+  * Fix logging for updated rclcpp interface
+  * Update src/bridge.cpp
+  Co-authored-by: Ivan Santiago Paunovic <ivanpauno@ekumenlabs.com>
+  * Update to pass char *
+  * Uncrustify
+  Co-authored-by: Ivan Santiago Paunovic <ivanpauno@ekumenlabs.com>
+* Fix typo in comments (#297)
+  * very minor typo in comments
+  * Fix other copy-paste typos.
+  Co-authored-by: Steven! Ragnarök <nuclearsandwich@users.noreply.github.com>
+  Co-authored-by: tomoya <Tomoya.Fujita@sony.com>
+* fix bug with sizeof when type of the arrays differ (#298)
+* Tailor: Updating Jenkinsfile
+* RST-4108 Allow parametrizing service bridge timeouts (#3)
+  * Allow parametrizing service bridge timeouts
+  * Fix default init
+  * Lint
+* RST-4126 -better handling of ros1/time and ros2/builtin_interfaces types for service factories (#2)
+* Tailor: Updating Jenkinsfile
+* Fail fast, don't wait for services
+* Tailor: Updating Jenkinsfile
+* Tailor: Creating Jenkinsfile
+* Wait for a ROS1 service to exist before attempting to call it
+* [forward port] update to use rosidl_parser and .idl files rather than rosidl_adapter and .msg files (#296)
+  * update to use rosidl_parser and .idl files rather than rosidl_adapter and .msg files
+  * fix quote style linting error
+* Update maintainers (#286)
+* Contributors: Jacob Perron, Michael Carroll, Paul Bovbel, Vicidel, William Woodall, locus-services, nleblanc-lr
+
 0.9.4 (2020-09-10)
 ------------------
 * use hardcoded QoS (keep all, transient local) for /tf_static topic in dynamic_bridge (`#282 <https://github.com/ros2/ros1_bridge/issues/282>`_)
