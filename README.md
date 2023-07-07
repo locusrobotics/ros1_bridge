@@ -46,7 +46,7 @@ To run the following examples you will also need these ROS 1 packages:
 
 ### Prerequisites for the examples in this file
 
-In order to make the examples below portable between versions of ROS, we define two environment variables, `ROS1_INSTALL_PATH` and `ROS2_INSTALL_PATH`. 
+In order to make the examples below portable between versions of ROS, we define two environment variables, `ROS1_INSTALL_PATH` and `ROS2_INSTALL_PATH`.
 These are defined as the paths to the installation location of their respective ROS versions.
 
 If you installed Noetic in the default location, then the definition of `ROS1_INSTALL_PATH` will be `/opt/ros/noetic`.
@@ -507,14 +507,14 @@ Note that the `qos` section can be omitted entirely and options not set are left
 
 This bridge extends the `ros1_bridge` to support actions. The bridge works in both directions, meaning an action goal can be sent from ROS 1 client to ROS 2 server, or from ROS 2 client to ROS 1 server.
 
-The arguments for the `action_bridge` node are:  
+The arguments for the `action_bridge` node are:
 `direction`: from client (`ros1` or `ros2`)
 e.g.:
-- `ROS1` client to `ROS2` server --> `direction` = `ros1`
-- `ROS2` client to `ROS1` server --> `direction` = `ros2`  
+- `ROS1` client to `ROS2` server --> `direction` = `ros2`
+- `ROS2` client to `ROS1` server --> `direction` = `ros1`
 
-`package`: package of the `ROS1` server node  
-`type`: action interface type of `ROS1`  
+`package`: package of the `ROS1` server node
+`type`: action interface type of `ROS1`
 `name`: action name
 
 For sending goals from a ROS 2 action client to a ROS 1 action server
