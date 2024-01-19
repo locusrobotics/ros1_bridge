@@ -92,6 +92,10 @@ def _generate_cpp(output_path, template_dir, temporary_dir):
     data.update(generate_actions(
         rospack, message_string_pairs=message_string_pairs))
 
+    # create output folder if it doesn't exist
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
     template_file = os.path.join(template_dir, 'get_mappings.cpp.em')
     temporary_file = os.path.join(temporary_dir, 'get_mappings.cpp')
     output_file = os.path.join(output_path, 'get_mappings.cpp')
