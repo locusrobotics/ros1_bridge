@@ -75,6 +75,10 @@ import rosmsg  # noqa
 
 
 def generate_cpp(output_path, template_dir):
+    # Temporary directory is used to hold generated files, which are only
+    # copied into place if they differ from previously generated files. This
+    # ensures that timestamps on files that have not changed are not updated
+    # and saves a ton of compile time.
     with tempfile.TemporaryDirectory() as tempdir:
         _generate_cpp(output_path, template_dir, tempdir)
 
