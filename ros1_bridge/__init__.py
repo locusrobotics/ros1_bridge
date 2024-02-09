@@ -75,9 +75,9 @@ import rosmsg  # noqa
 
 
 # matches array variables in ROS messages like: double[24] or geometry_msgs/Pose[]
-array_pattern = re.compile("\[\d*\]$")
+array_pattern = re.compile(r'\[\d*\]$')
 # matches variable length array variables in ROS messages like: geometry_msgs/Twist[]
-variable_length_array_pattern = re.compile("\[\]$")
+variable_length_array_pattern = re.compile(r'\[\]$')
 
 
 def generate_cpp(output_path, template_dir):
@@ -856,7 +856,8 @@ def determine_common_services(
                 output[direction].append({
                     'basic': False if '/' in ros1_type else True,
                     'array': array_pattern.search(ros1_type) is not None,
-                    'variable_length_array': variable_length_array_pattern.search(ros1_type) is not None,
+                    'variable_length_array':
+                        variable_length_array_pattern.search(ros1_type) is not None,
                     'ros1': {
                         'name': ros1_name,
                         'type': array_pattern.sub("", ros1_type),
@@ -956,7 +957,8 @@ def determine_common_actions(
                 output[direction].append({
                     'basic': False if '/' in ros1_type else True,
                     'array': array_pattern.search(ros1_type) is not None,
-                    'variable_length_array': variable_length_array_pattern.search(ros1_type) is not None,
+                    'variable_length_array':
+                        variable_length_array_pattern.search(ros1_type) is not None,
                     'ros1': {
                         'name': ros1_name,
                         'type': array_pattern.sub("", ros1_type),
