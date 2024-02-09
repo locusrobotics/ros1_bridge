@@ -74,6 +74,10 @@ for package_path in reversed([p for p in rpp if p]):
 import rosmsg  # noqa
 
 
+array_pattern = re.compile("\[\d*\]$")
+variable_length_array_pattern = re.compile("\[\]$")
+
+
 def generate_cpp(output_path, template_dir):
     # Temporary directory is used to hold generated files, which are only
     # copied into place if they differ from previously generated files. This
@@ -849,16 +853,17 @@ def determine_common_services(
                             break
                 output[direction].append({
                     'basic': False if '/' in ros1_type else True,
-                    'array': True if '[]' in ros1_type else False,
+                    'array': array_pattern.search(ros1_type) is not None,
+                    'variable_length_array': variable_length_array_pattern.search(ros1_type) is not None,
                     'ros1': {
                         'name': ros1_name,
-                        'type': ros1_type.rstrip('[]'),
-                        'cpptype': ros1_type.rstrip('[]').replace('/', '::')
+                        'type': array_pattern.sub("", ros1_type),
+                        'cpptype': array_pattern.sub("", ros1_type).replace('/', '::')
                     },
                     'ros2': {
                         'name': ros2_name,
-                        'type': ros2_type.rstrip('[]'),
-                        'cpptype': ros2_type.rstrip('[]').replace('/', '::msg::')
+                        'type': array_pattern.sub("", ros2_type),
+                        'cpptype': array_pattern.sub("", ros2_type).replace('/', '::msg::')
                     }
                 })
         if match:
@@ -948,16 +953,17 @@ def determine_common_actions(
                             break
                 output[direction].append({
                     'basic': False if '/' in ros1_type else True,
-                    'array': True if '[]' in ros1_type else False,
+                    'array': array_pattern.search(ros1_type) is not None,
+                    'variable_length_array': variable_length_array_pattern.search(ros1_type) is not None,
                     'ros1': {
                         'name': ros1_name,
-                        'type': ros1_type.rstrip('[]'),
-                        'cpptype': ros1_type.rstrip('[]').replace('/', '::')
+                        'type': array_pattern.sub("", ros1_type),
+                        'cpptype': array_pattern.sub("", ros1_type).replace('/', '::')
                     },
                     'ros2': {
                         'name': ros2_name,
-                        'type': ros2_type.rstrip('[]'),
-                        'cpptype': ros2_type.rstrip('[]').replace('/', '::msg::')
+                        'type': array_pattern.sub("", ros2_type),
+                        'cpptype': array_pattern.sub("", ros2_type).replace('/', '::msg::')
                     }
                 })
         if match:
