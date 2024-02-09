@@ -74,7 +74,9 @@ for package_path in reversed([p for p in rpp if p]):
 import rosmsg  # noqa
 
 
+# matches array variables in ROS messages like: double[24] or geometry_msgs/Pose[]
 array_pattern = re.compile("\[\d*\]$")
+# matches variable length array variables in ROS messages like: geometry_msgs/Twist[]
 variable_length_array_pattern = re.compile("\[\]$")
 
 
