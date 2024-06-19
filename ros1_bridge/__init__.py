@@ -33,7 +33,7 @@ from genmsg.base import COMMENTCHAR, IODELIM
 import genmsg.msg_loader
 
 import rosidl_adapter.parser
-from rosidl_cmake import expand_template
+from rosidl_pycommon import expand_template
 import rosidl_parser.parser
 
 import yaml
