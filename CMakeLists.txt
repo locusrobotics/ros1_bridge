@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.5)
 
 project(ros1_bridge)
 
+execute_process(
+  COMMAND python3 bin/ros1_bridge_generate_package_list
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  OUTPUT_VARIABLE pkg_include_list
+)
+
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -56,7 +62,10 @@ find_package(xmlrpcpp REQUIRED)
 # find ROS 1 packages with messages / services
 include(cmake/find_ros1_interface_packages.cmake)
 find_ros1_interface_packages(ros1_message_packages)
-filter_packages("ros1_message_packages")
+filter_packages(
+  PKG_LIST "ros1_message_packages"
+  INCLUDE_PKGS ${pkg_include_list}
+)
 
 set(prefixed_ros1_message_packages "")
 foreach(ros1_message_package ${ros1_message_packages})
@@ -141,7 +150,10 @@ list(APPEND generated_files "${generated_path}/get_mappings.cpp")
 
 # generate per interface compilation units to keep the memory usage low
 ament_index_get_resources(ros2_interface_packages "rosidl_interfaces")
-filter_packages("ros2_interface_packages")
+filter_packages(
+  PKG_LIST "ros2_interface_packages"
+  INCLUDE_PKGS ${pkg_include_list}
+)
 
 # actionlib_msgs is deprecated, but we will quiet the warning until the bridge has support for
 # ROS actions: https://github.com/ros2/design/issues/195
@@ -170,6 +182,7 @@ endforeach()
 
 set(target_dependencies
   "bin/ros1_bridge_generate_factories"
+  "bin/ros1_bridge_generate_package_list"
   "resource/get_factory.cpp.em"
   "resource/get_mappings.cpp.em"
   "resource/interface_factories.cpp.em"
@@ -184,7 +197,7 @@ add_custom_command(
   COMMAND Python3::Interpreter
   ARGS bin/ros1_bridge_generate_factories
     --output-path "${generated_path}" --template-dir resource
-    --pkg-includes '${BRIDGE_INCLUDE_PKGS}'
+    --pkg-includes '${pkg_include_list}'
     --pkg-ignores '${BRIDGE_IGNORE_PKGS}'
   DEPENDS ${target_dependencies}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
