@@ -63,8 +63,8 @@ Changelog for package ros1_bridge
 0.13.1 (2024-09-27)
 -------------------
 
-Forthcoming
------------
+0.13.2 (2024-09-27)
+-------------------
 * Update Jenkinsfile to use the jammy docker image (`#9 <https://github.com/locusrobotics/ros1_bridge/issues/9>`_)
   * Update Jenkinsfile to use the jammy docker image
   * Package wide linting fixes
