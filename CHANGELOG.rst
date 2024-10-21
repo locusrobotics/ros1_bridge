@@ -60,8 +60,8 @@ Changelog for package ros1_bridge
 * Update maintainers (#286)
 * Contributors: Chris Lalancette, Jacob Perron, Michael Carroll, Paul Bovbel, Vicidel, William Woodall, locus-services
 
-Forthcoming
------------
+0.14.1 (2024-10-21)
+-------------------
 * Add localization_msgs to ros1_bridge (`#12 <https://github.com/locusrobotics/ros1_bridge/issues/12>`_)
 * Contributors: James Prestwood
 
